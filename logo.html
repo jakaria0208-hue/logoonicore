@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onicore – Logo Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@300;400;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#111; font-family:'Inter',sans-serif; color:#fff; min-height:100vh; }
+
+    .topbar {
+      background:#000; padding:16px 28px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .topbar-title { font-size:13px; color:#666; letter-spacing:2px; text-transform:uppercase; }
+    .topbar-brand { font-family:'Playfair Display',serif; font-size:20px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 2px;
+      padding: 2px;
+    }
+
+    .logo-card {
+      background: #000;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 60px 40px 40px;
+      gap: 32px;
+      min-height: 340px;
+      position: relative;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .logo-card:hover { background: #0a0a0a; }
+    .logo-card.light { background: #f5f5f0; }
+    .logo-card.light:hover { background: #eee; }
+
+    .card-label {
+      position: absolute; top: 18px; left: 22px;
+      font-size: 11px; color: #444; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .logo-card.light .card-label { color: #aaa; }
+
+    .dl-btn {
+      position: absolute; top: 14px; right: 16px;
+      background: #1a1a1a; border: 1px solid #333;
+      color: #888; border-radius: 6px;
+      padding: 6px 12px; font-size: 11px;
+      cursor: pointer; letter-spacing: 1px;
+      transition: all .2s; text-transform: uppercase;
+    }
+    .logo-card.light .dl-btn { background: #fff; border-color: #ddd; color: #999; }
+    .dl-btn:hover { color: #fff; border-color: #666; background: #222; }
+    .logo-card.light .dl-btn:hover { color: #000; border-color: #999; background: #eee; }
+
+    /* ─── LOGO 1: GEOMETRIC SLASH ─── */
+    .logo-1 svg { overflow: visible; }
+
+    /* ─── LOGO 3: TAGLINE ─── */
+    .tagline {
+      font-size: 11px; letter-spacing: 5px;
+      text-transform: uppercase; color: #555;
+      font-weight: 300;
+    }
+    .logo-card.light .tagline { color: #aaa; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">ONICORE</div>
+  <div class="topbar-title">Logo Studio</div>
+</div>
+
+<div class="grid">
+
+  <!-- LOGO 1: GEOMETRIC + SLASH (dark) -->
+  <div class="logo-card" id="card1">
+    <span class="card-label">01 — Geometric Slash</span>
+    <button class="dl-btn" onclick="downloadSVG('svg1','onicore-logo-1-dark')">↓ JPG</button>
+    <svg id="svg1" width="380" height="100" viewBox="0 0 380 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- O -->
+      <text x="0" y="88" font-family="Inter" font-weight="900" font-size="96" fill="white" letter-spacing="-2">ONICORE</text>
+      <!-- diagonal slash overlay -->
+      <line x1="158" y1="8" x2="222" y2="92" stroke="#e74c3c" stroke-width="3.5"/>
+      <!-- bottom accent line -->
+      <line x1="0" y1="97" x2="380" y2="97" stroke="#333" stroke-width="1"/>
+      <line x1="0" y1="97" x2="120" y2="97" stroke="#e74c3c" stroke-width="2"/>
+    </svg>
+    <div class="tagline">What is Earth Without Art</div>
+  </div>
+
+  <!-- LOGO 2: SPLIT WEIGHT (dark) -->
+  <div class="logo-card" id="card2">
+    <span class="card-label">02 — Split Weight</span>
+    <button class="dl-btn" onclick="downloadSVG('svg2','onicore-logo-2-dark')">↓ JPG</button>
+    <svg id="svg2" width="340" height="100" viewBox="0 0 340 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- ONI thin -->
+      <text x="0" y="82" font-family="Inter" font-weight="300" font-size="86" fill="white" letter-spacing="8">ONI</text>
+      <!-- CORE bold -->
+      <text x="162" y="82" font-family="Inter" font-weight="900" font-size="86" fill="white" letter-spacing="-1">CORE</text>
+      <!-- separator dot -->
+      <circle cx="156" cy="48" r="5" fill="#e74c3c"/>
+    </svg>
+    <div class="tagline">Media &amp; Lifestyle</div>
+  </div>
+
+  <!-- LOGO 3: STACKED (dark) -->
+  <div class="logo-card" id="card3">
+    <span class="card-label">03 — Stacked</span>
+    <button class="dl-btn" onclick="downloadSVG('svg3','onicore-logo-3-dark')">↓ JPG</button>
+    <svg id="svg3" width="300" height="130" viewBox="0 0 300 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- ONI -->
+      <text x="0" y="62" font-family="Inter" font-weight="900" font-size="68" fill="white" letter-spacing="18">ONI</text>
+      <!-- line -->
+      <rect x="0" y="72" width="300" height="2" fill="#e74c3c"/>
+      <!-- CORE -->
+      <text x="2" y="120" font-family="Inter" font-weight="300" font-size="52" fill="white" letter-spacing="36">CORE</text>
+    </svg>
+  </div>
+
+  <!-- LOGO 4: CIRCLE EMBLEM (dark) -->
+  <div class="logo-card" id="card4">
+    <span class="card-label">04 — Circle Emblem</span>
+    <button class="dl-btn" onclick="downloadSVG('svg4','onicore-logo-4-dark')">↓ JPG</button>
+    <svg id="svg4" width="300" height="140" viewBox="0 0 300 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- outer circle -->
+      <circle cx="150" cy="70" r="68" stroke="white" stroke-width="1.5"/>
+      <!-- inner circle -->
+      <circle cx="150" cy="70" r="58" stroke="#333" stroke-width="1"/>
+      <!-- crosshair lines -->
+      <line x1="82" y1="70" x2="218" y2="70" stroke="#333" stroke-width="1"/>
+      <line x1="150" y1="2" x2="150" y2="138" stroke="#333" stroke-width="1"/>
+      <!-- ONICORE text -->
+      <text x="150" y="82" font-family="Inter" font-weight="900" font-size="38" fill="white" text-anchor="middle" letter-spacing="3">ONICORE</text>
+      <!-- top text -->
+      <text x="150" y="36" font-family="Inter" font-weight="300" font-size="9" fill="#666" text-anchor="middle" letter-spacing="5">MEDIA</text>
+      <!-- bottom text -->
+      <text x="150" y="112" font-family="Inter" font-weight="300" font-size="9" fill="#666" text-anchor="middle" letter-spacing="4">LIFESTYLE</text>
+      <!-- red accent dots -->
+      <circle cx="82" cy="70" r="3" fill="#e74c3c"/>
+      <circle cx="218" cy="70" r="3" fill="#e74c3c"/>
+    </svg>
+  </div>
+
+  <!-- LOGO 5: SLASH LIGHT BG -->
+  <div class="logo-card light" id="card5">
+    <span class="card-label">01 — On Light</span>
+    <button class="dl-btn" onclick="downloadSVG('svg5','onicore-logo-1-light')">↓ JPG</button>
+    <svg id="svg5" width="380" height="100" viewBox="0 0 380 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="88" font-family="Inter" font-weight="900" font-size="96" fill="black" letter-spacing="-2">ONICORE</text>
+      <line x1="158" y1="8" x2="222" y2="92" stroke="#e74c3c" stroke-width="3.5"/>
+      <line x1="0" y1="97" x2="380" y2="97" stroke="#ccc" stroke-width="1"/>
+      <line x1="0" y1="97" x2="120" y2="97" stroke="#e74c3c" stroke-width="2"/>
+    </svg>
+    <div class="tagline" style="color:#bbb">What is Earth Without Art</div>
+  </div>
+
+  <!-- LOGO 6: MINIMAL LINE -->
+  <div class="logo-card" id="card6">
+    <span class="card-label">05 — Minimal Line</span>
+    <button class="dl-btn" onclick="downloadSVG('svg6','onicore-logo-5-minimal')">↓ JPG</button>
+    <svg id="svg6" width="320" height="90" viewBox="0 0 320 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- top thin line -->
+      <line x1="0" y1="10" x2="320" y2="10" stroke="#333" stroke-width="1"/>
+      <!-- red segment -->
+      <line x1="0" y1="10" x2="80" y2="10" stroke="#e74c3c" stroke-width="2"/>
+      <!-- ONICORE -->
+      <text x="0" y="72" font-family="Inter" font-weight="800" font-size="70" fill="white" letter-spacing="2">ONICORE</text>
+      <!-- bottom thin line -->
+      <line x1="0" y1="82" x2="320" y2="82" stroke="#333" stroke-width="1"/>
+      <line x1="240" y1="82" x2="320" y2="82" stroke="#e74c3c" stroke-width="2"/>
+    </svg>
+  </div>
+
+</div>
+
+<script>
+  function downloadSVG(svgId, filename) {
+    event.stopPropagation();
+    const svg = document.getElementById(svgId);
+    const card = svg.closest('.logo-card');
+    const isLight = card.classList.contains('light');
+
+    const scale = 4; // 4x = high res
+    const w = svg.viewBox.baseVal.width * scale;
+    const h = svg.viewBox.baseVal.height * scale;
+
+    const serializer = new XMLSerializer();
+    let svgStr = serializer.serializeToString(svg);
+    // Embed Inter font so it renders correctly
+    svgStr = svgStr.replace('<svg', `<svg xmlns="http://www.w3.org/2000/svg"`);
+
+    const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = w + 80 * scale;
+      canvas.height = h + 60 * scale;
+      const ctx = canvas.getContext('2d');
+
+      // Background
+      ctx.fillStyle = isLight ? '#f5f5f0' : '#000000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw SVG centered
+      ctx.drawImage(img, 40 * scale, 30 * scale, w, h);
+
+      URL.revokeObjectURL(url);
+
+      const a = document.createElement('a');
+      a.download = filename + '.jpg';
+      a.href = canvas.toDataURL('image/jpeg', 0.97);
+      a.click();
+    };
+    img.src = url;
+  }
+</script>
+</body>
+</html>
