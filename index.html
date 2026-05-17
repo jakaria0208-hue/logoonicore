@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Onicore – Logo Studio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@300;400;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@300;400;800;900&family=Cormorant:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     body { background:#111; font-family:'Inter',sans-serif; color:#fff; min-height:100vh; }
@@ -124,25 +125,34 @@
 
   <!-- LOGO 4: CIRCLE EMBLEM (dark) -->
   <div class="logo-card" id="card4">
-    <span class="card-label">04 — Circle Emblem</span>
-    <button class="dl-btn" onclick="downloadSVG('svg4','onicore-logo-4-dark')">↓ JPG</button>
-    <svg id="svg4" width="300" height="140" viewBox="0 0 300 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- outer circle -->
-      <circle cx="150" cy="70" r="68" stroke="white" stroke-width="1.5"/>
-      <!-- inner circle -->
-      <circle cx="150" cy="70" r="58" stroke="#333" stroke-width="1"/>
-      <!-- crosshair lines -->
-      <line x1="82" y1="70" x2="218" y2="70" stroke="#333" stroke-width="1"/>
-      <line x1="150" y1="2" x2="150" y2="138" stroke="#333" stroke-width="1"/>
-      <!-- ONICORE text -->
-      <text x="150" y="82" font-family="Inter" font-weight="900" font-size="38" fill="white" text-anchor="middle" letter-spacing="3">ONICORE</text>
-      <!-- top text -->
-      <text x="150" y="36" font-family="Inter" font-weight="300" font-size="9" fill="#666" text-anchor="middle" letter-spacing="5">MEDIA</text>
-      <!-- bottom text -->
-      <text x="150" y="112" font-family="Inter" font-weight="300" font-size="9" fill="#666" text-anchor="middle" letter-spacing="4">LIFESTYLE</text>
-      <!-- red accent dots -->
-      <circle cx="82" cy="70" r="3" fill="#e74c3c"/>
-      <circle cx="218" cy="70" r="3" fill="#e74c3c"/>
+    <span class="card-label">04 — Globe Emblem</span>
+    <button class="dl-btn" onclick="downloadSVG('svg4','onicore-logo-globe')">↓ JPG</button>
+    <svg id="svg4" width="300" height="160" viewBox="0 0 300 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="gc">
+          <circle cx="150" cy="80" r="71"/>
+        </clipPath>
+      </defs>
+      <!-- outer globe circle -->
+      <circle cx="150" cy="80" r="72" stroke="white" stroke-width="1.2" fill="none"/>
+      <!-- globe wireframe clipped -->
+      <g clip-path="url(#gc)">
+        <!-- longitude lines (vertical ellipses) -->
+        <ellipse cx="150" cy="80" rx="48" ry="72" stroke="white" stroke-width="0.7" fill="none" opacity="0.3"/>
+        <ellipse cx="150" cy="80" rx="22" ry="72" stroke="white" stroke-width="0.7" fill="none" opacity="0.2"/>
+        <!-- latitude lines (horizontal ellipses) -->
+        <ellipse cx="150" cy="80" rx="72" ry="22" stroke="white" stroke-width="0.7" fill="none" opacity="0.3"/>
+        <ellipse cx="150" cy="52" rx="60" ry="13" stroke="white" stroke-width="0.6" fill="none" opacity="0.2"/>
+        <ellipse cx="150" cy="108" rx="60" ry="13" stroke="white" stroke-width="0.6" fill="none" opacity="0.2"/>
+        <ellipse cx="150" cy="28" rx="38" ry="8" stroke="white" stroke-width="0.5" fill="none" opacity="0.15"/>
+        <ellipse cx="150" cy="132" rx="38" ry="8" stroke="white" stroke-width="0.5" fill="none" opacity="0.15"/>
+      </g>
+      <!-- Onicore italic text -->
+      <text x="150" y="93" font-family="Cormorant" font-style="italic" font-weight="700" font-size="50" fill="white" text-anchor="middle" letter-spacing="2">Onicore</text>
+      <!-- tiny tagline -->
+      <!-- red pole dots -->
+      <circle cx="150" cy="8" r="2.5" fill="#e74c3c"/>
+      <circle cx="150" cy="152" r="2.5" fill="#e74c3c"/>
     </svg>
   </div>
 
@@ -179,46 +189,35 @@
 </div>
 
 <script>
-  function downloadSVG(svgId, filename) {
+  async function downloadSVG(svgId, filename) {
     event.stopPropagation();
     const svg = document.getElementById(svgId);
     const card = svg.closest('.logo-card');
-    const isLight = card.classList.contains('light');
 
-    const scale = 4; // 4x = high res
-    const w = svg.viewBox.baseVal.width * scale;
-    const h = svg.viewBox.baseVal.height * scale;
+    // Hide UI elements temporarily
+    const btn = card.querySelector('.dl-btn');
+    const label = card.querySelector('.card-label');
+    btn.style.display = 'none';
+    label.style.display = 'none';
 
-    const serializer = new XMLSerializer();
-    let svgStr = serializer.serializeToString(svg);
-    // Embed Inter font so it renders correctly
-    svgStr = svgStr.replace('<svg', `<svg xmlns="http://www.w3.org/2000/svg"`);
-
-    const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = w + 80 * scale;
-      canvas.height = h + 60 * scale;
-      const ctx = canvas.getContext('2d');
-
-      // Background
-      ctx.fillStyle = isLight ? '#f5f5f0' : '#000000';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Draw SVG centered
-      ctx.drawImage(img, 40 * scale, 30 * scale, w, h);
-
-      URL.revokeObjectURL(url);
+    try {
+      const canvas = await html2canvas(card, {
+        scale: 4,
+        useCORS: true,
+        backgroundColor: null,
+        logging: false,
+      });
 
       const a = document.createElement('a');
       a.download = filename + '.jpg';
       a.href = canvas.toDataURL('image/jpeg', 0.97);
       a.click();
-    };
-    img.src = url;
+    } catch(err) {
+      alert('Gagal download: ' + err.message);
+    }
+
+    btn.style.display = '';
+    label.style.display = '';
   }
 </script>
 </body>
